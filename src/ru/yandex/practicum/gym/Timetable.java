@@ -26,8 +26,8 @@ public class Timetable {
         sessionsAtTime.add(trainingSession);
     }
 
-    public TreeMap<TimeOfDay, List<TrainingSession>> getTrainingSessionsForDay(DayOfWeek dayOfWeek) {
-        return timetable.get(dayOfWeek);
+    public NavigableMap<TimeOfDay, List<TrainingSession>> getTrainingSessionsForDay(DayOfWeek dayOfWeek) {
+        return Collections.unmodifiableNavigableMap(timetable.get(dayOfWeek));
     }
 
     public List<TrainingSession> getTrainingSessionsForDayAndTime(DayOfWeek dayOfWeek, TimeOfDay timeOfDay) {

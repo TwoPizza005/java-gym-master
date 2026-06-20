@@ -20,12 +20,12 @@ class TimetableTest {
 
         timetable.addNewTrainingSession(session);
 
-        TreeMap<TimeOfDay, List<TrainingSession>> monday = timetable.getTrainingSessionsForDay(DayOfWeek.MONDAY);
+        NavigableMap<TimeOfDay, List<TrainingSession>> monday = timetable.getTrainingSessionsForDay(DayOfWeek.MONDAY);
         Assertions.assertEquals(1, monday.size());
         Assertions.assertTrue(monday.containsKey(new TimeOfDay(13, 0)));
         Assertions.assertEquals(1, monday.get(new TimeOfDay(13, 0)).size());
 
-        TreeMap<TimeOfDay, List<TrainingSession>> tuesday = timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY);
+        NavigableMap<TimeOfDay, List<TrainingSession>> tuesday = timetable.getTrainingSessionsForDay(DayOfWeek.TUESDAY);
         Assertions.assertTrue(tuesday.isEmpty());
     }
 
@@ -56,12 +56,12 @@ class TimetableTest {
         timetable.addNewTrainingSession(saturdayChild);
 
         // Понедельник
-        TreeMap<TimeOfDay, List<TrainingSession>> monday = timetable.getTrainingSessionsForDay(DayOfWeek.MONDAY);
+        NavigableMap<TimeOfDay, List<TrainingSession>> monday = timetable.getTrainingSessionsForDay(DayOfWeek.MONDAY);
         Assertions.assertEquals(1, monday.size());
         Assertions.assertEquals(1, monday.get(new TimeOfDay(13, 0)).size());
 
         // Четверг — 2 времени: 13:00 (2 занятия) и 20:00 (1 занятие)
-        TreeMap<TimeOfDay, List<TrainingSession>> thursday = timetable.getTrainingSessionsForDay(DayOfWeek.THURSDAY);
+        NavigableMap<TimeOfDay, List<TrainingSession>> thursday = timetable.getTrainingSessionsForDay(DayOfWeek.THURSDAY);
         Assertions.assertEquals(2, thursday.size());
         Iterator<TimeOfDay> it = thursday.navigableKeySet().iterator();
         Assertions.assertEquals(new TimeOfDay(13, 0), it.next());
